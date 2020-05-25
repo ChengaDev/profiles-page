@@ -54,7 +54,6 @@ profileRouter.patch('/profiles/:id', async (req, res) => {
         updates.forEach((update) => {
             profile[update] = req.body[update];
         });
-        console.log(profile.bio);
         await profile.save();
 
         return res.send(profile);

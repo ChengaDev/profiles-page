@@ -4,19 +4,13 @@ import profileTypes from './types';
 export default function profileReducer(state = initialState.profiles, action) {
     switch (action.type) {
         case profileTypes.EDIT_PROFILE_SUCCESS: {
-            const oldProfileIndex = state.findIndex(
-                (profile) => profile._id === action.updatedProfile._id
+            debugger;
+            let oldState = [...state];
+            const oldProfileIndex = oldState.findIndex(
+                (profile) => profile._id === action.profile._id
             );
-            const updatedProfile = {
-                ...state[oldProfileIndex],
-                ...action.updatedProfile
-            };
-            return Object.assign(
-                [],
-                ...state.slice(0, oldProfileIndex),
-                updatedProfile,
-                ...state.slice(oldProfileIndex + 1)
-            );
+            oldState[oldProfileIndex] = action.profile;
+            return Object.assign([], oldState);
         }
         case profileTypes.DELETE_PROFILE_SUCCESS:
             return Object.assign(

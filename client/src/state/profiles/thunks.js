@@ -2,20 +2,21 @@ import {
     getAllProfiles,
     createProfile as createProfileCall,
     deleteProfile as deleteProfileCall,
-    updateProfile as updateProfileCall
+    editProfile as editProfileCall
 } from '../../api/profileApi';
 import {
     loadProfilesSuccess,
     createProfileSuccess,
-    deleteProfileSuccess
+    deleteProfileSuccess,
+    editProfileSuccess
 } from './actions';
 import { showErrorAlert } from '../alerts/thunks';
 
 export const updateProfile = (updatedProfile) => {
     return async function (dispatch, getState) {
         try {
-            await updateProfileCall(updatedProfile);
-            dispatch(deleteProfileSuccess(updatedProfile));
+            await editProfileCall(updatedProfile);
+            dispatch(editProfileSuccess(updatedProfile));
         } catch (ex) {
             dispatch(showErrorAlert());
         }

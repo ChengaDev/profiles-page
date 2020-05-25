@@ -12,10 +12,12 @@ import { showErrorAlertSelector } from '../state/alerts/selectors';
 
 function App() {
     const dispatch = useDispatch();
-    const [shouldDisplayEditModal, setShouldDisplayEditModal] = useState(false);
-    const [profileForEdit, setProfileForEdit] = useState(null);
+
     const profiles = useSelector(allProfilesSelector);
     const showErrorAlert = useSelector(showErrorAlertSelector);
+
+    const [shouldDisplayEditModal, setShouldDisplayEditModal] = useState(false);
+    const [profileForEdit, setProfileForEdit] = useState(null);
 
     useEffect(() => {
         dispatch(fetchProfiles());

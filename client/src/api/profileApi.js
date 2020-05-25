@@ -17,7 +17,7 @@ export const getProfile = async (id) => {
     return response.data;
 };
 
-export const updateProfile = async (profile) => {
+export const editProfile = async (profile) => {
     const response = await BaseApi().patch(`/profiles/${profile._id}`, {
         ...profile
     });
@@ -36,7 +36,7 @@ export const deleteProfile = async (id) => {
 export default {
     getAllProfiles,
     getProfile,
-    updateProfile,
+    editProfile,
     createProfile,
     deleteProfile
 };

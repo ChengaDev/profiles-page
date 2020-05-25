@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ProfileForm from '../forms/ProfileForm';
+import ProfileForm from './HeaderForm';
 import { createProfile } from '../../state/profiles/thunks';
 import { useDispatch } from 'react-redux';
 
