@@ -11,8 +11,9 @@ npm install
 ```
 
 ## Usage
+### Make sure you are in the root directory
 
-Run the entire app using this command:
+Run the entire app using this command :
 ```bash
 npm run app
 ```
