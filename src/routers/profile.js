@@ -16,6 +16,7 @@ profileRouter.post('/profiles', async (req, res) => {
 // Get all profiles
 profileRouter.get('/profiles', async (req, res) => {
     try {
+        // get all objects from db
         const allProfiles = await Profile.find({});
         return res.send(allProfiles);
     } catch (error) {
@@ -28,9 +29,11 @@ profileRouter.get('/profiles/:id', async (req, res) => {
     const profileId = req.params.id;
 
     try {
+        // get object from db
         const profile = await Profile.findOne({ _id: profileId });
 
         if (!profile) {
+            // in profile not found - return 404
             return res.status(404).send();
         }
         return res.send(profile);
@@ -46,14 +49,19 @@ profileRouter.patch('/profiles/:id', async (req, res) => {
     try {
         const profile = await Profile.findOne({ _id: profileId });
 
+        // in profile not found - return 404
         if (!profile) {
             return res.status(404).send();
         }
 
+        // get all updated fields
         const updates = Object.keys(req.body);
+
+        // run over all the fields to update and override the value
         updates.forEach((update) => {
             profile[update] = req.body[update];
         });
+        // save the profile
         await profile.save();
 
         return res.send(profile);
@@ -66,7 +74,9 @@ profileRouter.patch('/profiles/:id', async (req, res) => {
 profileRouter.delete('/profiles/:id', async (req, res) => {
     try {
         const profile = await Profile.findOneAndDelete({ _id: req.params.id });
+
         if (!profile) {
+            // in profile not found - return 404
             return res.status(404).send();
         }
         return res.send(profile);
