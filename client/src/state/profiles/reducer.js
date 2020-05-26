@@ -4,7 +4,6 @@ import profileTypes from './types';
 export default function profileReducer(state = initialState.profiles, action) {
     switch (action.type) {
         case profileTypes.EDIT_PROFILE_SUCCESS: {
-            debugger;
             let oldState = [...state];
             const oldProfileIndex = oldState.findIndex(
                 (profile) => profile._id === action.profile._id
